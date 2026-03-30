@@ -1,0 +1,112 @@
+﻿route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
+TAE:100,TAE,"100","Champ de Foire  Le Gruchet","",3,,FDC300,000000
+TAE:101,TAE,"101","Mandela  Pôle Multimodal-Cotoni","",3,,FDC300,000000
+TAE:102,TAE,"102","Champ de Foire  Beau Site","",3,,FDC300,000000
+TAE:103,TAE,"103","Collège Cousteau  Moulin Saint-Etienne","",3,,FDC300,000000
+TAE:104,TAE,"104","Collège J. Brel  Le Gruchet","",3,,FDC300,000000
+TAE:106,TAE,"106","Collège J. Brel  Beau Site","",3,,FDC300,000000
+TAE:111,TAE,"A","Mairie de Saint-Pierre-Les-Elbeuf  Mairie de Cléon","",3,,CD1821,FFFFFF
+TAE:112,TAE,"B","Parc Saint-Cyr  Ecole de La Londe","",3,,354093,FFFFFF
+TAE:113,TAE,"C","Bosc Tard  Mairie de Cléon","",3,,009F61,FFFFFF
+TAE:115,TAE,"F","Z.I. L'Oison  Pôle Multimodal d'Oissel","",3,,ED6896,FFFFFF
+TAE:116,TAE,"D1","Parc Saint-Cyr  Mairie de Cléon","",3,,75462D,FFFFFF
+TAE:117,TAE,"D2","Mairie de Saint-Pierre-Lès-Elbeuf  Pôle Multimodal d'Oissel","",3,,98C21D,000000
+TAE:118,TAE,"F9","Champ de Foire  Théâtre des Arts","",3,,258BCB,FFFFFF
+TAE:119,TAE,"G","Champ de Foire  Route du Bac","",3,,D1D035,000000
+TAE:120,TAE,"I","Tourville la rivière Centre commercial  Ecole de police","",3,,38B4B6,FFFFFF
+TAE:311,TAE,"311","Lycée Val de Seine  Champ de Foire","",3,,FDC300,000000
+TCAR:01,TCAR,"F1","Plaine de la Ronce <> Stade Diochon","",3,,E6007E,ffffff
+TCAR:02,TCAR,"F2","Centre commercial de La Vatine <> Tamarelle","",3,,A2559D,ffffff
+TCAR:03,TCAR,"F3","Hôtel de Ville de Sotteville <> Tourville-la-Rivière","",3,,FFDD00,1d1d1b
+TCAR:04,TCAR,"F4","Hameau de Frévaux <> Mont-Riboudet","",3,,EC6408,ffffff
+TCAR:05,TCAR,"F5","Théâtre des Arts <> Lycée Galilée","",3,,AFCA0B,1d1d1b
+TCAR:06,TCAR,"F6","Les Bouttières <> Gare de Saint-Etienne","",3,,00ACE5,ffffff
+TCAR:07,TCAR,"F7","La Pléiade <> Hôtel de Ville de Sotteville","",3,,008F5B,ffffff
+TCAR:08,TCAR,"F8","Lycée du Cailly <> Tamarelle","",3,,0090D7,ffffff
+TCAR:10,TCAR,"10","Maromme La Maine <> Lycée Flaubert","",3,,F8AE4C,1d1d1b
+TCAR:11,TCAR,"11","Collège L. de Vinci <> Ile Lacroix","",3,,00ACE5,ffffff
+TCAR:13,TCAR,"13","Martainville <> École de Musique","",3,,F8AE4C,1d1d1b
+TCAR:14,TCAR,"14","Mont Pilon <> Mairie de Belbeuf","",3,,00ACE5,ffffff
+TCAR:15,TCAR,"15","Collège Jules Verne <> Grand Val","",3,,74B95B,1d1d1b
+TCAR:20,TCAR,"20","Le Chapître <> Mairie de Saint-Aubin-Épinay","",3,,C29FCB,1d1d1b
+TCAR:201,TCAR,"201","Rue d'Hectot / Salle des Fêtes <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:202,TCAR,"202","Le Maupas - Ferme du Tronc <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:203,TCAR,"203","L'Orvason <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:204,TCAR,"204","Bois de la Fontaine <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:205,TCAR,"205","Le Paulu - Usine Oxford <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:206,TCAR,"206","Rue Saint-Jean <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:207,TCAR,"207","Route du Halage <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:208,TCAR,"208","Calumet <> Collège Gustave Flaubert","",3,,FDC300,1d1d1b
+TCAR:210,TCAR,"210","Ronceray <> Collège Charcot","",3,,FDC300,1d1d1b
+TCAR:211,TCAR,"211","La Chanteraine <> Collège Charcot","",3,,FDC300,1d1d1b
+TCAR:212,TCAR,"212","Terrain de Pétanque <> Collège Charcot","",3,,FDC300,1d1d1b
+TCAR:213,TCAR,"213","La Maison Blanche <> Collège Charcot","",3,,FDC300,1d1d1b
+TCAR:214,TCAR,"214","Le Genetey / Roumardière <> Collège Le Cèdre / Collège Ste-Marie","",3,,FDC300,1d1d1b
+TCAR:22,TCAR,"22","Parc de la Vatine <> Barrières de Darnétal","",3,,F4A3AF,1d1d1b
+TCAR:220,TCAR,"220","École J.Y. Cousteau <>","",3,,FDC300,1d1d1b
+TCAR:221,TCAR,"221","École d'Épinay <>","",3,,FDC300,1d1d1b
+TCAR:222,TCAR,"222","Route de Yainville <> École de Jumièges","",3,,FDC300,1d1d1b
+TCAR:224,TCAR,"224","Les Vieux / Le Bas Aulnay <> Écoles de Saint-Paër","",3,,FDC300,1d1d1b
+TCAR:225,TCAR,"225","Mairie - École d'Yville <>","",3,,FDC300,1d1d1b
+TCAR:227,TCAR,"227","La Chapelle des Monts <> École Malraux","",3,,FDC300,1d1d1b
+TCAR:228,TCAR,"228","Le Halage <> École Malraux","",3,,FDC300,1d1d1b
+TCAR:229,TCAR,"229","Église du Trait <> École Maupassant","",3,,FDC300,1d1d1b
+TCAR:26,TCAR,"414","Filo'R Zone 5","",3,,0069B4,
+TCAR:27,TCAR,"27","Théâtre des Arts <> Bel Air","",3,,74B95B,1d1d1b
+TCAR:28,TCAR,"28","Louise Michel <> Bois Tison","",3,,F4A3AF,1d1d1b
+TCAR:300,TCAR,"300","Épinay <> Lycée Flaubert","",3,,FDC300,1d1d1b
+TCAR:301,TCAR,"301","Bois Breton <> Lycée Flaubert","",3,,FDC300,1d1d1b
+TCAR:302,TCAR,"302","Boulingrin <> Lycée Grieu","",3,,FDC300,1d1d1b
+TCAR:303,TCAR,"303","Route d'Isneauville <> Lycée Flaubert / Coll. St-Victrice","",3,,FDC300,1d1d1b
+TCAR:305,TCAR,"305","Petit Pont <> Lycée Flaubert","",3,,FDC300,1d1d1b
+TCAR:310,TCAR,"310","Pôle Multimodal-Cotoni <> Lycée des Bruyères / Lycée Élisa Lemonnier","",3,,FDC300,1d1d1b
+TCAR:311,TCAR,"311","Pôle Multimodal-Cotoni / Champ de Foire <> Lycée Val de Seine","",3,,FDC300,1d1d1b
+TCAR:313,TCAR,"313","Coopérateurs <> Collège E. Branly","",3,,FDC300,1d1d1b
+TCAR:314,TCAR,"314","La Houssière <> Lycée des Bruyères","",3,,FDC300,1d1d1b
+TCAR:315,TCAR,"315","Les Bouttières <> Lycée des Bruyères","",3,,FDC300,1d1d1b
+TCAR:322,TCAR,"322","Siamoisiers <> Collège Lucie Aubrac","",3,,FDC300,1d1d1b
+TCAR:33,TCAR,"33","François Truffaut <> Hôtel de Ville de Sotteville","",3,,00A983,ffffff
+TCAR:330,TCAR,"330","Long Corbeil <> Lycée Galilée","",3,,FDC300,1d1d1b
+TCAR:331,TCAR,"331","Eauplet <> La Providence","",3,,FDC300,1d1d1b
+TCAR:332,TCAR,"332","Mairie de Montmain <> Lycée Galilée / La Providence / Collège Malot","",3,,FDC300,1d1d1b
+TCAR:333,TCAR,"333","Château Anquetil <> Lycée Galilée / La Providence","",3,,FDC300,1d1d1b
+TCAR:334,TCAR,"334","École Mendès-France <> Lycée Galilée / Collège Malot","",3,,FDC300,1d1d1b
+TCAR:335,TCAR,"335","Allée du Couvent <> Lycée Galilée / La Providence / Collège Malot","",3,,FDC300,1d1d1b
+TCAR:336,TCAR,"336","Mairie de Belbeuf <> Collège Verhaeren","",3,,FDC300,1d1d1b
+TCAR:340,TCAR,"340","Forgettes <> Boulingrin","",3,,FDC300,1d1d1b
+TCAR:341,TCAR,"341","Épinay <> Collège Rousseau","",3,,FDC300,1d1d1b
+TCAR:342,TCAR,"342","Bois Breton <> Collège Rousseau","",3,,FDC300,1d1d1b
+TCAR:343,TCAR,"343","Mont Pilon <> Collège Chartier","",3,,FDC300,1d1d1b
+TCAR:35,TCAR,"35","Sente d'Houdeville <> École Moulin","",3,,D3D800,1d1d1b
+TCAR:350,TCAR,"350","Place Alexandre <> Collège Gounod","",3,,FDC300,1d1d1b
+TCAR:351,TCAR,"351","M.I.N. / Place du Général de Gaulle <> Collège Gounod","",3,,FDC300,1d1d1b
+TCAR:36,TCAR,"36","Boulingrin <> Coteaux du Larmont","",3,,D3D800,1d1d1b
+TCAR:360,TCAR,"360","Place du Vivier <> Collège Jean Zay","",3,,FDC300,1d1d1b
+TCAR:361,TCAR,"361","Hameau Saint-Maurice <> Collège Jean Zay","",3,,FDC300,1d1d1b
+TCAR:363,TCAR,"363","Lycée du Cailly <> Maromme La Maine","",3,,FDC300,1d1d1b
+TCAR:364,TCAR,"364","Place du Vivier <> Lycée du Cailly","",3,,FDC300,1d1d1b
+TCAR:37,TCAR,"37","Les Bosquets <> Monod","",3,,D3D800,1d1d1b
+TCAR:38,TCAR,"38","Coteaux Branly <> Mairie de Montmain","",3,,D3D800,1d1d1b
+TCAR:41,TCAR,"41","Ancienne Mare <> La Bastille","",3,,F8AE4C,1d1d1b
+TCAR:42,TCAR,"42","Lebon <> Vente Olivier","",3,,A2559D,ffffff
+TCAR:43,TCAR,"43","Longs Vallons <> Place du Vivier","",3,,9BD5E3,1d1d1b
+TCAR:44,TCAR,"44","E. Lacroix <> Chapelle Saint-Siméon","",3,,9BD5E3,1d1d1b
+TCAR:45,TCAR,"Filo'r Z2","Libération <> Mairie de Darnétal","",3,,FFFFFF,
+TCAR:46,TCAR,"Filo'r Z2","Route d'Isneauville <> Mairie de Darnétal","",3,,FFFFFF,
+TCAR:47,TCAR,"Filo'r Z3","Président Coty <> Stade de Quévreville","",3,,FFFFFF,
+TCAR:48,TCAR,"Filo'r Z3","Église de Saint-Aubin","",3,,FFFFFF,
+TCAR:49,TCAR,"Filo'r Z4","Place Joseph Lefèbvre <> Terrain de Pétanque","",3,,FFFFFF,
+TCAR:50,TCAR,"Filo'r Z5","Mairie - École d'Yville","",3,,FFFFFF,
+TCAR:529,TCAR,"529","Route de Montville <> Gare Routière de Rouen","",3,,9BD5E3,1d1d1b
+TCAR:530,TCAR,"530","Caudebec - Quai <> Gare Routière","",3,,D20A11,
+TCAR:60,TCAR,"Astuce Pro","Astuce Pro","",3,,FFFFFF,
+TCAR:90,TCAR,"Métro","Boulingrin <> Georges Braque / Technopôle","",1,,123E8B,ffffff
+TCAR:91,TCAR,"T1","Mont aux Malades <> CHU Charles Nicolle","",3,,E63027,ffffff
+TCAR:92,TCAR,"T2","Mairie - V. Schoelcher <> Tamarelle","",3,,008F5B,ffffff
+TCAR:93,TCAR,"T3","Monet <> Durécu-Lavoisier","",3,,6D1C74,ffffff
+TCAR:94,TCAR,"T4","Marie Curie - MTC <> ESIGELEC","",3,,F5C500,1d1d1b
+TCAR:95,TCAR,"T5","Mont aux Malades <> Champlain","",3,,003048,
+TCAR:98,TCAR,"Noctambus","La Pléiade <> Cateliers","",3,,29235C,ffde00
+TCAR:99,TCAR,"Calypso","Navette Calypso","",4,,0bbbef,ffffff
+TNI:26,TNI,"26","Salle des Fetes de Saint-Pierre-de-Varengeville <> Mont-Riboudet","Astuce (Saint-Pierre-de-Varengeville <> Rouen)",3,,,FFFFFF
+TNI:530,TNI,"530","Caudebec Quai <> Gare Routiere de Rouen","Astuce (Caudebec-en-Caux <> Rouen)",3,,,FFFFFF

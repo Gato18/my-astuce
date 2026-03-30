@@ -1,0 +1,5 @@
+﻿agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url,agency_email
+TCAR,"Astuce","https://www.myastuce.fr",Europe/Paris,FR,,,
+TAE,"Elbeuf","https://www.myastuce.fr",Europe/Paris,FR,,,
+TNI,"Astuce (interurbain)","https://www.myastuce.fr",Europe/Paris,FR,,,
+FLEXO,"Service TAD FLEXO","https://www.myastuce.fr",Europe/Paris,FR,,,

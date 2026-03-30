@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" class="mozilla fr simple-page-view">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Le site R&#233;seau Astuce devient le site My Astuce</title>
+        <link href='/Content/css/site-639050226720224061.css' rel='stylesheet'  />
+        <link href='/Content/css/LinesColor.css' rel='stylesheet'  />
+    </head>
+    <body>
+    <!-- Contenu -->
+    
+
+    <main class="main" role="main">
+        <div class="main-container container">
+            
+
+
+
+
+<div class="error-404">
+    <div>
+        <img src="/Content/img/logo/logo-print.png" alt="Alt  Logo du site"  width="200" height="100" />
+    </div>
+    <div>Le site Réseau Astuce devient le site My Astuce</div>
+    <a href="https://myastuce.fr/" target="_blank">
+        <img src="/Content/img/logo/new-logo-myastuce.png" alt=""  class="My Astuce" width="200" height="100" title="Réseau Astuce" />
+    </a>
+    <br />
+    <div class="animated-loader-container animated-loader-container-top"><div aria-live="assertive" class="animated-loader animated-loader-medium black"></div><div class="animated-loader-text"></div></div>
+    <div class="font-weight-normal">
+        Vous allez &#234;tre automatiquement redirig&#233; vers 
+        <a href="https://myastuce.fr/" target="_blank">
+            myastuce.fr
+        </a>
+    </div>
+</div>
+
+<script>
+    window.setTimeout(function () {
+        window.location.href = "http://myastuce.fr/";
+    }, 7000);
+</script>
+        </div>
+    </main>
+    
+
+
+<script src="/Scripts/Plugins/Base-639050226720224061.js" type="text/javascript"></script>
+
+<script src="/Scripts/Project/bundle-639050226720224061.js" type="text/javascript"></script>
+<script src="/Scripts/Dynamic/fr/script-639050226720224061.js" type="text/javascript"></script>
+
+<script>
+
+    var isActivated = false;
+
+    var cookieNames = ["__utma", "__utmb", "__utmc", "__utmt", "__utmv", "__utmz", "_ga", "_gat", "_gid", "hasConsentRgpd", "ga", "ga-disable-UA-112648-34", "_ga_7PDXE7JEQD"];
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        var name = cookies[i];
+        console.log(name);
+        if (name.startsWith('_ga') || name.startsWith('has') || name.startsWith('ga')) {
+            document.cookie = name + '; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + location.hostname;
+        }
+    }
+    for (var i = 0; i < cookies.length; i++) {
+        var name = cookies[i];
+        if (name.startsWith('_ga') || name.startsWith('has') || name.startsWith('ga')) {
+            document.cookie = name + '; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.reseau-astuce.fr';
+        }
+    }
+
+    function launchMatomo() {
+        var _paq = window._paq = window._paq || [];
+
+        if (isActivated === false) {
+            //Si l'utilisateur à consenti, le cookie Matomo est déposé
+            _paq.push(['rememberCookieConsentGiven']);
+            //On peut maintenant activer les heatMaps
+            _paq.push(['HeatmapSessionRecording::enable']);
+        } else {
+            //On active le tracking dans le cas ou l'utilisateur a accepté Matomo, refusé Matomo & de nouveau accepté Matomo
+            _paq.push(['enableLinkTracking', true]);
+            _paq.push(['rememberCookieConsentGiven']);
+            _paq.push(['HeatmapSessionRecording::enable']);
+        }
+        console.log("launch");
+    }
+
+    function disableMatomo() {
+        //Si l'utilisateur refuse Matomo, on désactive complétement le tracking
+        _paq.push(['enableLinkTracking', false]);
+        //On supprime le Cookie de consent de Matomo
+        _paq.push(['forgetCookieConsentGiven']);
+        isActivated = true;
+        console.log("disable");
+
+    }
+
+    void 0 === window._axcb && (window._axcb = []);
+    window._axcb.push(function (axeptio) {
+        axeptio.on("cookies:complete", function (choices) {
+            if (choices.Matomo ) {
+                launchMatomo();
+            }
+            else {
+                disableMatomo();
+            }
+        })
+    });
+
+</script>
+
+
+
+    </body>
+</html>
+

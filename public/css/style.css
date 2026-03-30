@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    overscroll-behavior-y: none; /* Empêche le rebond iOS pour une sensation "app" */
+}
+
+/* Animations Personnalisées */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(227, 6, 19, 0);
+    }
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(227, 6, 19, 0);
+    }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Classes utilitaires d'animation */
+.animate-imminent {
+    animation: pulse-ring 2s infinite;
+}
+
+.animate-fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scrollbar invisible (façon mobile) */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* Support Notch & Safe Area (iPhone) */
+.pt-safe {
+    padding-top: env(safe-area-inset-top);
+}
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+}
