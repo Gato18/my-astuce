@@ -49,6 +49,22 @@ let cache = {
     lastUpdate: 0
 };
 
+const MERGED_METRO_DIRECTIONS = new Set([
+    normalizeName('Technopole Saint Etienne du Rouvray'),
+    normalizeName('Georges Braque Grand Quevilly')
+]);
+
+function getCanonicalDirection(routeInfo, direction) {
+    const normalizedDirection = normalizeName(direction || '');
+    const isMetro = routeInfo && parseInt(routeInfo.routeType) === 1;
+
+    if (isMetro && MERGED_METRO_DIRECTIONS.has(normalizedDirection)) {
+        return 'Technopole / Georges Braque';
+    }
+
+    return direction || 'Terminus';
+}
+
 // --- CHARGEMENT DES REFERENTIELS GTFS STATIQUES ---
 function loadGtfsStatic() {
     console.log("📂 Chargement des référentiels GTFS statiques en mémoire...");
@@ -227,80 +243,103 @@ async function fetchAndCacheData() {
         console.log(`[${new Date().toLocaleTimeString()}] 🔄 Rafraîchissement des données du réseau Astuce...`);
 
         // 1. Fetch Véhicules
-        const resVehicules = await fetch(URLS.vehicules);
-        if (resVehicules.ok) {
-            const buffer = await resVehicules.arrayBuffer();
-            const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
-            
-            const tmpVehicles = [];
-            for (const entity of feed.entity) {
-                if (entity.vehicle) {
-                    tmpVehicles.push({
-                        id: entity.id,
-                        tripId: entity.vehicle.trip?.tripId,
-                        routeId: entity.vehicle.trip?.routeId,
-                        latitude: entity.vehicle.position?.latitude,
-                        longitude: entity.vehicle.position?.longitude,
-                        bearing: entity.vehicle.position?.bearing,
-                        timestamp: entity.vehicle.timestamp?.toNumber()
-                    });
-                }
-            }
-            cache.vehicules = tmpVehicles;
-        }
-
-        // 2. Fetch Horaires (TripUpdates)
-        const resHoraires = await fetch(URLS.horaires);
-        if (resHoraires.ok) {
-            const buffer = await resHoraires.arrayBuffer();
-            const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
-            
-            const tmpPassages = [];
-            for (const entity of feed.entity) {
-                if (entity.tripUpdate && entity.tripUpdate.stopTimeUpdate) {
-                    for (const stopTimeUpdate of entity.tripUpdate.stopTimeUpdate) {
-                        let arrivalTime = null;
-                        let departureTime = null;
-                        let delaySec = null;
-                        try {
-                            if (stopTimeUpdate.arrival?.time) arrivalTime = stopTimeUpdate.arrival.time.toNumber();
-                            if (stopTimeUpdate.departure?.time) departureTime = stopTimeUpdate.departure.time.toNumber();
-                            if (stopTimeUpdate.arrival?.delay !== undefined) delaySec = stopTimeUpdate.arrival.delay;
-                        } catch(e) {}
-
-                        tmpPassages.push({
-                            tripId: entity.tripUpdate.trip?.tripId || 'Inconnu',
-                            routeId: entity.tripUpdate.trip?.routeId || 'Inconnu',
-                            stopId: stopTimeUpdate.stopId, // On stocke en string pour la correspondance JS
-                            arrival: arrivalTime,
-                            departure: departureTime,
-                            delay: delaySec
+        try {
+            const resVehicules = await fetch(URLS.vehicules);
+            if (resVehicules.ok) {
+                const buffer = await resVehicules.arrayBuffer();
+                const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
+                
+                const tmpVehicles = [];
+                for (const entity of feed.entity) {
+                    if (entity.vehicle) {
+                        tmpVehicles.push({
+                            id: entity.id,
+                            tripId: entity.vehicle.trip?.tripId,
+                            routeId: entity.vehicle.trip?.routeId,
+                            latitude: entity.vehicle.position?.latitude,
+                            longitude: entity.vehicle.position?.longitude,
+                            bearing: entity.vehicle.position?.bearing,
+                            timestamp: entity.vehicle.timestamp?.toNumber()
                         });
                     }
                 }
+                cache.vehicules = tmpVehicles;
+            } else {
+                console.warn(`⚠️ Flux véhicules indisponible (${resVehicules.status}).`);
             }
-            cache.passages = tmpPassages;
+        } catch (error) {
+            console.warn("⚠️ Échec du rafraîchissement des véhicules:", error.message);
+        }
+
+        // 2. Fetch Horaires (TripUpdates)
+        try {
+            const resHoraires = await fetch(URLS.horaires);
+            if (resHoraires.ok) {
+                const buffer = await resHoraires.arrayBuffer();
+                const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
+                
+                const tmpPassages = [];
+                for (const entity of feed.entity) {
+                    if (entity.tripUpdate && entity.tripUpdate.stopTimeUpdate) {
+                        for (const stopTimeUpdate of entity.tripUpdate.stopTimeUpdate) {
+                            let arrivalTime = null;
+                            let departureTime = null;
+                            let delaySec = null;
+                            try {
+                                if (stopTimeUpdate.arrival?.time) arrivalTime = stopTimeUpdate.arrival.time.toNumber();
+                                if (stopTimeUpdate.departure?.time) departureTime = stopTimeUpdate.departure.time.toNumber();
+                                if (stopTimeUpdate.arrival?.delay !== undefined) delaySec = stopTimeUpdate.arrival.delay;
+                            } catch(e) {}
+
+                            tmpPassages.push({
+                                tripId: entity.tripUpdate.trip?.tripId || 'Inconnu',
+                                routeId: entity.tripUpdate.trip?.routeId || 'Inconnu',
+                                stopId: stopTimeUpdate.stopId,
+                                arrival: arrivalTime,
+                                departure: departureTime,
+                                delay: delaySec
+                            });
+                        }
+                    }
+                }
+                cache.passages = tmpPassages;
+            } else {
+                console.warn(`⚠️ Flux horaires indisponible (${resHoraires.status}).`);
+            }
+        } catch (error) {
+            console.warn("⚠️ Échec du rafraîchissement des horaires:", error.message);
         }
 
         // 3. Fetch Alertes
-        const resAlertes = await fetch(URLS.alertes);
-        if (resAlertes.ok) {
-            const buffer = await resAlertes.arrayBuffer();
-            const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
-            
-            const tmpAlertes = [];
-            for (const entity of feed.entity) {
-                if (entity.alert) {
-                    tmpAlertes.push({
-                        id: entity.id,
-                        cause: entity.alert.cause,
-                        effect: entity.alert.effect,
-                        header: entity.alert.headerText?.translation?.[0]?.text || "Alerte de service",
-                        description: entity.alert.descriptionText?.translation?.[0]?.text || "",
-                    });
+        try {
+            const resAlertes = await fetch(URLS.alertes);
+            if (resAlertes.ok) {
+                const buffer = await resAlertes.arrayBuffer();
+                if (!buffer || buffer.byteLength === 0) {
+                    cache.alertes = [];
+                    console.log("ℹ️ Flux alertes vide: aucune alerte active.");
+                } else {
+                const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(new Uint8Array(buffer));
+                
+                const tmpAlertes = [];
+                for (const entity of feed.entity) {
+                    if (entity.alert) {
+                        tmpAlertes.push({
+                            id: entity.id,
+                            cause: entity.alert.cause,
+                            effect: entity.alert.effect,
+                            header: entity.alert.headerText?.translation?.[0]?.text || "Alerte de service",
+                            description: entity.alert.descriptionText?.translation?.[0]?.text || "",
+                        });
+                    }
                 }
+                cache.alertes = tmpAlertes;
+                }
+            } else {
+                console.warn(`⚠️ Flux alertes indisponible (${resAlertes.status}).`);
             }
-            cache.alertes = tmpAlertes;
+        } catch (error) {
+            console.warn("⚠️ Échec du rafraîchissement des alertes:", error.message);
         }
 
         cache.lastUpdate = Date.now();
@@ -356,7 +395,7 @@ app.get('/api/horaires/:stopId', (req, res) => {
             ...p,
             routeName: routeInfo ? routeInfo.shortName : (rId !== 'Inconnu' ? rId : 'BUS'),
             routeColor: routeInfo ? routeInfo.color : 'cccccc',
-            direction: tripInfo ? tripInfo.headsign : 'Terminus',
+            direction: getCanonicalDirection(routeInfo, tripInfo ? tripInfo.headsign : 'Terminus'),
             directionId: tripInfo ? tripInfo.directionId : '0'
         };
     });
@@ -442,7 +481,7 @@ app.get('/api/horaires-station/:stationId', (req, res) => {
             routeName: routeInfo ? routeInfo.shortName : 'BUS',
             routeColor: routeInfo ? routeInfo.color : 'cccccc',
             routeType: vehicleType,
-            direction: tripInfo ? tripInfo.headsign : 'Terminus',
+            direction: getCanonicalDirection(routeInfo, tripInfo ? tripInfo.headsign : 'Terminus'),
             directionId: tripInfo ? tripInfo.directionId : '0'
         };
     });
