@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnMap = document.getElementById('btn-map');
     const btnCloseMap = document.getElementById('btn-close-map');
     const btnAroundMe = document.getElementById('btn-around-me');
+    const themeToggle = document.getElementById('theme-toggle');
 
     const btnOpenRouteSelector = document.getElementById('btn-open-route-selector');
     const btnCloseRouteSelector = document.getElementById('btn-close-route-selector');
@@ -35,6 +36,36 @@ document.addEventListener('DOMContentLoaded', () => {
     let favoritesInterval = null; // Timer pour le rafraîchissement des favoris
     let stopsData = []; // Stations parents uniquement
     let allRoutes = []; // Cache local des lignes
+    const themeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function getPreferredTheme() {
+        const savedTheme = localStorage.getItem('astuce-theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
+        return themeMediaQuery.matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+        const isDark = theme === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', String(isDark));
+            themeToggle.setAttribute('title', isDark ? 'Passer en mode jour' : 'Passer en mode nuit');
+            const icon = themeToggle.querySelector('i');
+            if (icon) icon.setAttribute('data-lucide', isDark ? 'sun-medium' : 'moon-star');
+        }
+        lucide.createIcons();
+    }
+
+    function toggleTheme() {
+        const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('astuce-theme', nextTheme);
+        applyTheme(nextTheme);
+    }
+
+    function handleSystemThemeChange(event) {
+        if (localStorage.getItem('astuce-theme')) return;
+        applyTheme(event.matches ? 'dark' : 'light');
+    }
 
     // Mapping type de véhicule -> icône Lucide + label
     function getVehicleIcon(routeType) {
@@ -420,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* --- INIT --- */
     async function init() {
+        applyTheme(getPreferredTheme());
         renderFavorites();
         await loadStops();
         fetchTraficInfo();
@@ -432,11 +464,17 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCloseMap.addEventListener('click', () => mapManager.closeMap());
         btnAroundMe.addEventListener('click', handleAroundMe);
         btnCloseDashboard.addEventListener('click', hideStopDashboard);
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
         
         btnOpenRouteSelector.addEventListener('click', openRouteSelector);
         btnCloseRouteSelector.addEventListener('click', closeRouteSelector);
         routeFilterInput.addEventListener('input', (e) => renderRouteList(e.target.value));
         btnClearRoute.addEventListener('click', clearRouteSelection);
+        if (themeMediaQuery.addEventListener) {
+            themeMediaQuery.addEventListener('change', handleSystemThemeChange);
+        } else if (themeMediaQuery.addListener) {
+            themeMediaQuery.addListener(handleSystemThemeChange);
+        }
         
         lucide.createIcons();
     }

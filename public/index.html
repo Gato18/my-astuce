@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -7,8 +7,16 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        (() => {
+            const savedTheme = localStorage.getItem('astuce-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+
         tailwind.config = {
-            darkMode: 'media',
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -44,10 +52,15 @@
                 </div>
                 <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-astuce-blue to-blue-500 bg-clip-text text-transparent">Astuce Tracker</h1>
             </div>
-            <!-- Future Bouton Carte (Phase 3) -->
-            <button id="btn-map" class="p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-astuce-blue/50">
-                <i data-lucide="map" class="w-5 h-5"></i>
-            </button>
+            <div class="flex items-center gap-2">
+                <button id="theme-toggle" type="button" aria-label="Basculer le mode jour et nuit" aria-pressed="false" class="p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-astuce-blue/50">
+                    <i data-lucide="moon-star" class="w-5 h-5 theme-toggle-icon"></i>
+                </button>
+                <!-- Future Bouton Carte (Phase 3) -->
+                <button id="btn-map" class="p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-astuce-blue/50">
+                    <i data-lucide="map" class="w-5 h-5"></i>
+                </button>
+            </div>
         </div>
     </header>
 
